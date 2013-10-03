@@ -1,0 +1,182 @@
+<?php include('config.php') ?><!DOCTYPE html>
+<html lang="cy" class="fuelux<?php echo $debug ? ' debug':''; ?>">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+        <meta charset="utf-8">
+        <title>Seremonïau<?php echo isset($page_title)?' | '.$page_title:'';?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+				    
+				<link rel="shortcut icon" href="<?php echo $path ?>assets/icons/favicon.ico" type="image/x-icon" />
+				<link rel="apple-touch-icon" href="<?php echo $path ?>assets/icons/apple-touch-icon.png" />
+				<link rel="apple-touch-icon" sizes="57x57" href="<?php echo $path ?>assets/icons/apple-touch-icon-57x57.png" />
+				<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $path ?>assets/icons/apple-touch-icon-72x72.png" />
+				<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $path ?>assets/icons/apple-touch-icon-114x114.png" />
+				<link rel="apple-touch-icon" sizes="144x144" href="<?php echo $path ?>assets/icons/apple-touch-icon-144x144.png" />
+		
+				<link href="<?php echo $path ?>assets/css/fuelux.css" rel="stylesheet">
+				<link href="<?php echo $path ?>assets/css/fuelux-responsive.css" rel="stylesheet">
+				<link href="<?php echo $path ?>assets/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+				<link href="<?php echo $path ?>assets/css/font-awesome.css" rel="stylesheet" id="fontawsome-css">
+
+				<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+				<meta http-equiv="Pragma" content="no-cache" />
+				<meta http-equiv="Expires" content="0" />
+				
+				<link href="<?php echo $path ?>assets/css/seremoni.css" rel="stylesheet" id="bsCss">
+
+        <!--[if lt IE 8]>
+				<style>
+					.fuelux .search-query{padding:2px 4px!important}
+					.fuelux .wizard ul li .chevron{height:0px!imporant;z-index:3}
+					.fuelux .wizard .actions .btn{padding-bottom:6px!important}
+				</style>
+			<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css" rel="stylesheet">
+        <![endif]-->
+
+        <!--[if lt IE 9]>
+          <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+		<div id="top-nav" class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+
+				    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				      <span class="icon-bar"></span>
+				      <span class="icon-bar"></span>
+				      <span class="icon-bar"></span>
+				    </button>
+
+          			<a class="brand" href="<?php echo $path ?>"><?php include('assets/vector/logo.svg'); ?>
+							<span class="name">System seremonïau</span>
+						</a>
+						<form class="form-search form-inline navbar-form pull-right">
+							<div id="search" class="input-append">
+								<input id="searchInput" type="text" class="input-medium search-query" data-provide="typeahead" autocomplete="off" placeholder="Chwiliwch...">
+								<button type="submit" class="btn" title="Search for saved ceremonies" rel="tooltip"><i class="icon-search"></i></button>
+							</div>
+							<a href="?logout=true" title="Log Out" rel="tooltip" class="btn hidden-phone btn-inverse"><i class="icon-user"></i></a>
+						</form>
+
+            <div class="nav-collapse collapse">
+
+                <ul id="main-menu" class="nav">
+									<!--li><a class="dropdown-toggle" href="#edit">Golygu <i class="icon icon-edit"></i></a></li-->
+									<li>
+											<ul class="nav">
+												<li class="dropdown" id="createDropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown" title="Creu seremoni newydd" rel="tooltip">Newydd <i class="icon icon-certificate"></i></a>
+													<div id="create" class="dropdown-menu" style="padding:17px;">
+
+														<form class="form row-fluid form-inline" id="formCreate">
+
+														<div id="createWizard" class="wizard">
+															<ul class="steps">
+																<li data-target="#step1" class="active"><span class="badge badge-info">1</span><span class="chevron"></span></li>
+																<li data-target="#step2"><span class="badge">2</span><span class="chevron"></span></li>
+																<li data-target="#step3"><span class="badge">3</span><span class="chevron"></span></li>
+																<li data-target="#step4"><span class="badge">4</span><span class="chevron"></span></li>
+																<li data-target="#step5"><span class="badge">5</span><span class="chevron"></span></li>
+															</ul>
+															<div class="actions">
+																<button type="button" class="btn btn-mini btn-prev"> <i class="icon-arrow-left"></i></button>
+																<button type="button" class="btn btn-mini btn-next" data-last=""><i class="icon-arrow-right"></i></button>
+															</div>
+														</div>
+
+														<div class="step-content clearfix">
+
+															<div class="step-pane active row-fluid" id="step1">
+																<h3 class="letterpress">Names <small>  ### ! DEMO DOES NOT SAVE  ! ###</small></h3>
+																	<label for="g_firstName">Groom:</label>
+																	<input name="g_firstName" id="g_firstName" type="text" placeholder="First Name" class="input-medium">
+																	<input name="g_lastName" id="g_lastName" type="text" placeholder="Last Name" class="input-medium">
+																	<hr>
+																	<label for="g_firstName">Bride: </label>
+																	<input name="b_firstName" id="b_firstName" type="text" placeholder="First Name" class="input-medium">
+																	<input name="b_lastName" id="b_lastName" type="text" placeholder="Last Name" class="input-medium">
+															</div>
+
+															<div class="step-pane" id="step2">
+																<h3 class="letterpress">Witnesses</h3>
+																<hr>
+																<pre>
+Full name of 1st Witness (groom's)
+Full name of 2nd Witness (bride's)
+																</pre>
+															</div>
+
+															<div class="step-pane" id="step3">
+																<h3 class="letterpress">Father's Details</h3>
+																<hr>
+																<pre>
+
+Groom's Father:
+Name
+Occupation (required)
+deceased / retired (delete as appropriate)	
+
+Bride's Father:
+Name
+Occupation (required)
+deceased / retired (delete as appropriate)
+
+																</pre>
+															</div>
+
+															<div class="step-pane" id="step4">
+																<h3 class="letterpress">Ceremony</h3>
+																<hr>
+
+																<pre>
+Language:
+Welsh
+English
+Bilingual
+
+Type:                                            
+Standard Ceremony
+Enhanced Ceremony
+																</pre>
+
+															</div>
+
+															<div class="step-pane" id="step5">
+																<h3 class="letterpress">Declarations</h3>
+																<hr>
+
+																<pre>First Declaration
+Option 1  |  Option 2  |  Option 3
+
+Second Declaration
+Option 1  |  Option 2
+
+Presentation of Rings
+Option 1  |  Option 2  |  Option 3  |  Option 4</pre>
+															</div>
+
+															<hr>
+															<div class="actions pull-right">
+																<button type="button" class="btn btn-prev btn-primary btn-prev" data-action="previous"> <i class="icon-arrow-left icon-white"></i> Yn Ol</button>
+																<button type="button" class="btn btn-next btn-primary btn-next" data-action="next" data-last="Darfod">Nesaf <i class="icon-arrow-right icon-white"></i></button>
+																<button type="button" class="btn btn-danger hide" id="closeWizard">Close <i class="icon-remove"></i></button>
+ 
+															</div>
+
+													</div><!-- / .step-content -->
+											</form><!-- /formCreate -->
+									</div>
+								</li>
+								<li class="hidden-desktop"><a href="#logout">Allgofnodi <i class="icon icon-user"></i></a></li>
+        			</ul><!-- /.nav -->
+              </li>
+
+                </ul><!-- / #main-menu -->
+
+            </div><!--/.nav-collapse -->
+
+        </div><!-- /.container-->
+    </div><!-- /.navbar-inner -->
+</div><!-- .navbar -->
+
+<div class="container">

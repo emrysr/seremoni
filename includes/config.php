@@ -1,0 +1,9 @@
+<?php
+if($_SERVER['SERVER_NAME']=='localhost'||$_SERVER['SERVER_NAME']=='beast-ro'){
+	$path = 'http://beast-ro/seremoni/';
+}else{
+	$path = 'http://www.ybistro.co.uk/seremoni/';
+}
+$path = 'http://'.$_SERVER['SERVER_NAME'].'/seremoni/';
+
+$debug = false;
